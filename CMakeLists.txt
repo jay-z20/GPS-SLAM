@@ -40,19 +40,23 @@ set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS} -diag-suppress=20012)
 
 include(FetchContent)
 FetchContent_Declare(nlohmann_json
-    URL https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip
+    # URL https://github.com/nlohmann/json/archive/refs/tags/v3.11.3.zip
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/json-3.11.3 
 )
 set(NANOFLANN_BUILD_EXAMPLES OFF)
 set(NANOFLANN_BUILD_TESTS OFF)
 FetchContent_Declare(nanoflann
-    URL https://github.com/jlblancoc/nanoflann/archive/refs/tags/v1.5.5.zip
+    # URL https://github.com/jlblancoc/nanoflann/archive/refs/tags/v1.5.5.zip
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/nanoflann-1.5.5 
 )
 FetchContent_Declare(cxxopts
-    URL https://github.com/jarro2783/cxxopts/archive/refs/tags/v3.2.0.zip
+    # URL https://github.com/jarro2783/cxxopts/archive/refs/tags/v3.2.0.zip
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/cxxopts-3.2.0 
 )
 FetchContent_MakeAvailable(nlohmann_json nanoflann cxxopts)
 FetchContent_Declare(glm
-    URL https://github.com/g-truc/glm/archive/refs/tags/1.0.1.zip
+    # URL https://github.com/g-truc/glm/archive/refs/tags/1.0.1.zip
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/glm-1.0.1
 )
 FetchContent_MakeAvailable(glm)
 
