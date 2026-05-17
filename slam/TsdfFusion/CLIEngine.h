@@ -49,6 +49,12 @@ namespace InfiniTAM
 
             void Run();
             bool ProcessFrame();
+            
+            int GetCurrentFrameNo()
+            {
+                return currentFrameNo;
+            }
+
 
             Vector2i GetDepthSize()
             {

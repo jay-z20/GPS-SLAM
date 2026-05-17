@@ -1,0 +1,55 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "🚀 CUDA Debug: slam_trainer (Office0)",
+            "type": "cuda-gdb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/slam_trainer",
+            "args": [
+                "${workspaceFolder}/configs/release/replica/office1.yaml"
+            ],
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "stopAtEntry": false,
+            "externalConsole": false,
+            
+            // 可选但推荐添加的配置
+            "debuggerPath": "/usr/local/cuda/bin/cuda-gdb",   // 根据你的 CUDA 安装路径修改
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "logging": {
+                "moduleLoad": false,
+                "trace": false
+            }
+        },
+        {
+            "name": "🚀 Debug: slam_trainer (选择其他 config)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/slam_trainer",
+            "args": [
+                "${input:configFile}"
+            ],
+            "cwd": "${workspaceFolder}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                { "text": "-enable-pretty-printing" }
+            ]
+        }
+    ],
+    "inputs": [
+        {
+            "id": "configFile",
+            "type": "promptString",
+            "description": "请输入配置文件路径",
+            "default": "configs/release/replica/office1.yaml"
+        }
+    ]
+}

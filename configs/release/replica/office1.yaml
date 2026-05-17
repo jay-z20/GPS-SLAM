@@ -12,7 +12,7 @@ READER:
   depth_scale: 6553.5
   scene_scale: 1.0
   start_frame: 0
-  end_frame: 1999
+  end_frame: 399
   frame_step: 1
   # fx, fy, cx, cy
   intrinsics: [600, 600, 599.5, 339.5]
@@ -71,7 +71,7 @@ PIPE:
     viewFrustum_min: 0.2
     viewFrustum_max: 10
     load_images: true    
-    use_gt_pose: true
+    use_gt_pose: false
     saved_mesh: ""
     saved_engine: "tsdf_engine/"
     saved_images: raycasted

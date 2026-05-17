@@ -54,7 +54,7 @@ void ITMViewBuilder_CUDA::UpdateView(ITMView **view_ptr, ITMUChar4Image *rgbImag
 	{
 		if (!view->rgb_prev)
 			view->rgb_prev = new ITMUChar4Image(rgbImage->noDims, true, true);
-		else
+		else // 设置前一帧图像
 			view->rgb_prev->SetFrom(view->rgb, MemoryBlock<Vector4u>::CUDA_TO_CUDA);
 	}
 
@@ -66,7 +66,7 @@ void ITMViewBuilder_CUDA::UpdateView(ITMView **view_ptr, ITMUChar4Image *rgbImag
 	case ITMDisparityCalib::TRAFO_KINECT:
 		this->ConvertDisparityToDepth(view->depth, this->shortImage, &(view->calib.intrinsics_d), view->calib.disparityCalib.GetParams());
 		break;
-	case ITMDisparityCalib::TRAFO_AFFINE:
+	case ITMDisparityCalib::TRAFO_AFFINE: // True
 		this->ConvertDepthAffineToFloat(view->depth, this->shortImage, view->calib.disparityCalib.GetParams());
 		break;
 	default:

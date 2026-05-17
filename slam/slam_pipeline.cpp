@@ -73,7 +73,7 @@ void SLAMPipeline::SLAMTrainCams(SLAMGaussianModel &model, std::vector<Camera> &
 #endif
         curr_frame_id = i;
         // 1. 执行TSDF Fusion
-        assert(curr_frame_id == tsdf_engine->currentFrameNo);
+        assert(curr_frame_id == tsdf_engine->GetCurrentFrameNo());
         tsdf_engine->ProcessFrame();
 
         // std::cout << "gt" << std::endl;

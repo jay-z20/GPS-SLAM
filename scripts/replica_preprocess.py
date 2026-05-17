@@ -181,9 +181,9 @@ w = 1200
 h = 680
 scale = 6553.5
 
-input_dir = "data/Replica_raw/office1" # raw format replica scene dir
+input_dir = "/root/office0_small" # raw format replica scene dir
 output_dir = "data/replica/office1" # ours format replica scene dir
-frame_sample_num = 2000
+frame_sample_num = 400
 
 generate_dir(output_dir)
 color_poses = get_color_extrinsics(input_dir + "/traj.txt", output_dir + "/camera")

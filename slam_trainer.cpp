@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     setenv("CUDA_VISIBLE_DEVICES", devId.c_str(), 1);
 
     std::cout << "======= load camera data ======" << std::endl;
-    DatasetReader data_reader(config["READER"]);
+    DatasetReader data_reader(config["READER"]); // 不从点云初始化，读取深度
     data_reader.read();
     data_reader.updateSceneGeo();
 
