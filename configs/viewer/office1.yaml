@@ -1,6 +1,7 @@
 workspace_dir: output/release/replica/office1_without_pose
 dev_id: 0
-work_mode: train
+work_mode: eval
+port: 8800
 
 READER:
   input_dir: data/replica/office1

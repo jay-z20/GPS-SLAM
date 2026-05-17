@@ -332,7 +332,8 @@ void DatasetReader::read()
         {
             init_c2w = c2w_tensor;
         }
-        ref_c2w_pose = torch::matmul(poseInv(init_c2w), c2w_tensor);
+        // 处理掉 c2w_tensor
+        ref_c2w_pose = torch::matmul(poseInv(init_c2w), torch::zeros_like(c2w_tensor));
         Camera cam(width, height, fx, fy, cx, cy, has_depth, ref_c2w_pose, img_filename, depth_filename);
 
         cam.c2w_slam = ref_c2w_pose.clone();

@@ -76,15 +76,15 @@ void SLAMPipeline::SLAMTrainCams(SLAMGaussianModel &model, std::vector<Camera> &
         assert(curr_frame_id == tsdf_engine->GetCurrentFrameNo());
         tsdf_engine->ProcessFrame();
 
-        // std::cout << "gt" << std::endl;
-        // std::cout << cams[i].c2w << std::endl;
+        std::cout << "gt" << std::endl;
+        std::cout << cams[i].c2w << std::endl;
         torch::Tensor est_pose = infiMatrix4ToTensor(main_engine->GetTrackingState()->pose_d->GetInvM());
         cams[i].c2w_slam = est_pose;
         curr_cam = cams[i];
         curr_cam.toGPU();
 
-        // std::cout << "slam" << std::endl;
-        // std::cout << curr_cam.c2w_slam << std::endl;
+        std::cout << "slam" << std::endl;
+        std::cout << curr_cam.c2w_slam << std::endl;
         // 2.更新关键帧
         updateFrameList();
 #ifdef LOG_PIPELINE_TIME

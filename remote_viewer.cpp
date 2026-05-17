@@ -89,9 +89,9 @@ int main(int argc, char *argv[])
     pipe.device_id = config["dev_id"].as<int>();
 
     std::cout << "======= setup Gaussian model ======" << std::endl;
-    SLAMGaussianModel model;
-    model.loadConfig(config["MODEL"]);
-    model.loadParamsTensor(workspace_dir + "/gs_model/model.pt");
+    // SLAMGaussianModel model;
+    // model.loadConfig(config["MODEL"]);
+    // model.loadParamsTensor(workspace_dir + "/gs_model/model.pt");
     pipe.scene_scale = data_reader.scene_scale;
     pipe.loadConfig(config["PIPE"], workspace_dir, false);
     pipe.loadEngine();
@@ -121,16 +121,19 @@ int main(int argc, char *argv[])
             TensorDict raycast_res = pipe.runRaycastByCam(cam, false);
             torch::Tensor raycast_color = raycast_res["color_map"];
             torch::Tensor raycast_depth = raycast_res["depth_map"];
-            TensorDict render_res = model.forward(cam, raycast_depth, raycast_color);
-            torch::Tensor rendered_rgb = torch::clamp(render_res["rgb"], 0, 1);
+
+            // TensorDict render_res = model.forward(cam, raycast_depth, raycast_color);
+            // torch::Tensor rendered_rgb = torch::clamp(render_res["rgb"], 0, 1);
             cv::Mat raycast_color_img = tensorToImage(raycast_color);
             cv::Mat raycast_depth_img = tensorToJetMat(raycast_depth, 0, depth_vis_max, true);
 
-            cv::Mat rendered_color_img = tensorToImage(rendered_rgb);
-            sendImage(sock, rendered_color_img);
+            // cv::Mat rendered_color_img = tensorToImage(rendered_rgb);
+            // sendImage(sock, rendered_color_img);
+            sendImage(sock, raycast_color_img);
             // send input color
-            cv::Mat input_color_img = rendered_color_img.clone();
-            sendImage(sock, input_color_img);
+            //cv::Mat input_color_img = rendered_color_img.clone();
+            //sendImage(sock, input_color_img);
+            sendImage(sock, raycast_color_img);
             // send raycast color
             sendImage(sock, raycast_color_img);
             // send raycast depth
